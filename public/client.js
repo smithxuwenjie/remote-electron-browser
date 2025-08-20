@@ -23,8 +23,8 @@ wsInput.onmessage = (msg) => {
 };
 
 function sendMouseEvent(type, e, clickCount = 1) {
-  const scaleX = remoteWidth / canvas.width / zoomFactor;
-  const scaleY = remoteHeight / canvas.height / zoomFactor;
+  const scaleX = remoteWidth / canvas.width;
+  const scaleY = remoteHeight / canvas.height;
 
   const rx = e.offsetX * scaleX;
   const ry = e.offsetY * scaleY;
