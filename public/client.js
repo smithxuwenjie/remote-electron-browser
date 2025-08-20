@@ -106,12 +106,16 @@ wsFrame.onmessage = (msg) => {
       if (remoteMouse.x >= 0) {
         const cx = remoteMouse.x * (canvas.width / remoteWidth) * zoomFactor;
         const cy = remoteMouse.y * (canvas.height / remoteHeight) * zoomFactor;
-        ctx.strokeStyle = "red";
+        // Draw a mouse cursor icon
         ctx.beginPath();
-        ctx.moveTo(cx - 5, cy);
-        ctx.lineTo(cx + 5, cy);
-        ctx.moveTo(cx, cy - 5);
-        ctx.lineTo(cx, cy + 5);
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx, cy + 16);
+        ctx.lineTo(cx + 11, cy + 11);
+        ctx.closePath();
+        ctx.fillStyle = "white";
+        ctx.fill();
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 1;
         ctx.stroke();
       }
     };
