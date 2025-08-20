@@ -23,8 +23,8 @@ wsInput.onmessage = (msg) => {
 };
 
 function sendMouseEvent(type, e, clickCount = 1) {
-  const scaleX = remoteWidth / canvas.width;
-  const scaleY = remoteHeight / canvas.height;
+  const scaleX = remoteWidth / canvas.width / zoomFactor;
+  const scaleY = remoteHeight / canvas.height / zoomFactor;
 
   const rx = e.offsetX * scaleX;
   const ry = e.offsetY * scaleY;
@@ -104,8 +104,8 @@ wsFrame.onmessage = (msg) => {
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
       if (remoteMouse.x >= 0) {
-        const cx = remoteMouse.x * (canvas.width / remoteWidth);
-        const cy = remoteMouse.y * (canvas.height / remoteHeight);
+        const cx = remoteMouse.x * (canvas.width / remoteWidth) * zoomFactor;
+        const cy = remoteMouse.y * (canvas.height / remoteHeight) * zoomFactor;
         ctx.strokeStyle = "red";
         ctx.beginPath();
         ctx.moveTo(cx - 5, cy);
